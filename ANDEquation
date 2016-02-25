@@ -1,0 +1,45 @@
+"""bitwise exclusive AND class and method"""
+
+class ANDEquation:
+    def restoreY(self, A):
+        # convert integer list to list of length corrected binary sets
+        max_length = len(bin(int(max(A))))
+        binary_list = []
+        for number in A:
+            binary_value = bin(int(number))[2:]
+            difference = max_length - len(binary_value)
+            for number in range(difference):
+                binary_value = '0' + binary_value
+            binary_list.append(binary_value)
+        # set list index values to 0 for the following section
+        binlst_index = 0
+        # do the actual AND function stuff here
+        for binary_item in binary_list:
+            test_value = ''
+            trimmed_list = binary_list[:binlst_index] + binary_list[binlst_index + 1:]
+            digit_index = 0
+            for digit in range(max_length):
+                trmlst_index = 0
+                if len(trimmed_list) == 1:
+                    test_value = trimmed_list[0]
+                else:
+                    for trimmed_item in range(len(trimmed_list) - 1):
+                        test_digit = '0' 
+                        if trimmed_list[trmlst_index][digit_index] == '1' and trimmed_list[trmlst_index + 1][digit_index] == '1':
+                            test_digit = '1'
+                        else:
+                            break
+                        trmlst_index += 1
+                    test_value += test_digit
+                    digit_index += 1
+            if binary_item == test_value:
+                return int(test_value, 2)
+            binlst_index += 1
+        return -1
+        
+"""call method for testing and a few tests"""
+# test = ANDEquation()
+# print test.restoreY(["1", "3", "5"])
+# print test.restoreY(["1","0","0","1","0","1","0","1","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","1","0","1","0","1","1","0","0","0","1"])
+# print test.restoreY(["31","7"])
+# print test.restoreY(["2","3","7","19"])
