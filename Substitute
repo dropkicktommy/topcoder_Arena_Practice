@@ -45,10 +45,7 @@ class Substitute:
                  meaningful += char
         for digit in meaningful:
             value = str(key.index(digit) + 1)
-            if value == "10":
-                final_value += "0"
-            else:
-                final_value += value
+            final_value += str(int(value)%10)
         return int(final_value)
 
 # test = Substitute()
