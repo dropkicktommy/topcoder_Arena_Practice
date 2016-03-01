@@ -61,7 +61,7 @@ class ABoardGame:
         elif len(board) == 1:
             return board
         
-        # normal case
+        # general case
         else:
             new_board = board[1 : -1]
             test_board = []
@@ -72,6 +72,8 @@ class ABoardGame:
                 return "Alice"
             elif round_winner == "Bob" or round_winner == "B":
                 return "Bob"
+                
+            # evaluter winner of current board
             alices, bobs = 0, 0
             for element in board:
                 alices += element.count("A")
